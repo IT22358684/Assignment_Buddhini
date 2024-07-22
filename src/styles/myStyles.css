@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Comfortaa", sans-serif;
+    font-weight: 900;
+}
+
+body {
+    background: url("../images/bg01.png");
+    background-position: center;
+    background-size: cover;
+}
+
+#cusCard {
+    padding: 5px;
+    margin: 10px 30px 10px 30px;
+    background-color: rgba(99, 166, 174, 0.568);
+}
+
+.btns {
+    float: right;
+}
+
+.topic {
+    text-align: center;
+    padding: 10px;
+    margin: 20px;
+}
+
+#form {
+    padding: 15px;
+    margin: 60px 30px 0 30px;
+    background-color: rgba(99, 166, 174, 0.568);
+    border-radius: 15px;
+}
+
+#formFull {
+    padding: 25px;
+    margin: 60px 30px 0 30px;
+    background-color: rgba(99, 166, 174, 0.568);
+    border-radius: 15px;
+    width: 60%;  
+}
+
+#form label{
+    padding-top: 5px;
+} 
+
+#submit {
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(33, 65, 75, 0.7);
+    color: white;
+}
+
+#homeBtn {
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    background-color: rgb(33, 65, 75, 0.7);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+}
+
+.homeImg {
+    margin-top: 40px;
+}
+
+.searchBar {
+    float: right;
+}
+
+#fixed-form-container {
+    position: fixed;
+    top: 30; /* Adjust as needed */
+    right: 0; /* Position it to the right */
+    width: 40%; /* Adjust the width as needed */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+    padding: 20px; /* Optional: Add padding for better appearance */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
+    overflow-y: auto; /* Optional: Enable vertical scrolling if the content is too long */
+    height: 100vh; /* Make it span the full height of the viewport */
+  }
+
+.tableContainer {
+    padding: 20px;
+    margin: 20px;
+}
+
+.p {
+    font-size: small;
+}
+
+.navbar img {
+    margin-right: 1rem; /* Space between the image and the nav items */
+}
