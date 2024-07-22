@@ -17,10 +17,7 @@ include_once 'config.php';
 </head>
 
 <body>
-<?php
-// Linking the configuration file
-include_once 'header.php';
-?>
+
     <div class="row">
         <div class="col-7">
             <h2 class="topic">Items</h2>
@@ -42,7 +39,8 @@ include_once 'header.php';
                         $item_name = $row["item_name"];
                         $quantity = $row["quantity"];
                         $unit_price = $row["unit_price"];
-                        
+
+                        //display data
                         echo "<div class='card' id='cusCard'>
                                 <div class='card-body'>
                                     <h5 class='card-title'>" . $item_code . " " . $item_name . "</h5>
@@ -61,6 +59,7 @@ include_once 'header.php';
             ?>
         </div>
 
+        <!-- form to add details -->
         <div class="col-5">
             <div id="fixed-form-container">
                 <form class="row g-3" method="POST" action="addItem.php" id="form">

@@ -76,14 +76,14 @@ body {
 
 #fixed-form-container {
     position: fixed;
-    top: 30; /* Adjust as needed */
-    right: 0; /* Position it to the right */
-    width: 40%; /* Adjust the width as needed */
-    z-index: 1000; /* Ensure it stays on top of other elements */
-    padding: 20px; /* Optional: Add padding for better appearance */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
-    overflow-y: auto; /* Optional: Enable vertical scrolling if the content is too long */
-    height: 100vh; /* Make it span the full height of the viewport */
+    top: 30; 
+    right: 0;
+    width: 40%;
+    z-index: 1000;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; 
+    height: 100vh; 
   }
 
 .tableContainer {
@@ -93,8 +93,4 @@ body {
 
 .p {
     font-size: small;
-}
-
-.navbar img {
-    margin-right: 1rem; /* Space between the image and the nav items */
 }

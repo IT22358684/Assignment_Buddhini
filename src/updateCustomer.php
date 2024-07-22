@@ -2,7 +2,7 @@
     // Linking the configuration file
     include_once 'config.php';
 
-    // Get the customer id from the URL which needs to be updated
+    // Get the customer id from the URL
     $id = $_GET['updateid'];
 
     // Fetching the data from the database
@@ -33,9 +33,7 @@
                 SET title='$title', first_name='$first_name', middle_name='$middle_name', last_name='$last_name', contact_no='$contact_no', district='$district'
                 WHERE id=$id";
 
-        // Check updated data
         if ($conn->query($sql) === TRUE) {
-            // Redirect to customers page
             header("Location: customers.php");
         } else {
             echo "<script> alert ('Error: " . $sql . "<br>" . $conn->error . "'); </script>";
@@ -57,10 +55,8 @@
     <script src="https://kit.fontawesome.com/989548542d.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<?php
-    // Linking the configuration file
-    include_once 'header.php';
-?>
+
+    <!-- update form -->
     <div class="position-absolute top-50 start-50 translate-middle" id= "formFull">
         <form method="POST" class="row g-3">
             <h2 class="topic"> Update Customer Details </h2>

@@ -17,10 +17,6 @@ include_once 'config.php';
 </head>
 
 <body>
-<?php
-    // Linking the configuration file
-    include_once 'header.php';
-?>
     <div>
         <div class=" row searchBar sticky-top">
             <form action="" method="get">
@@ -51,56 +47,55 @@ include_once 'config.php';
                 </thead>
                 <tbody class='table-group-divider'>
                     <?php
-                    // Fetch data from the database
-                    if (isset($_GET['start_date']) && isset($_GET['end_date']) && $_GET['start_date'] != '' && $_GET['end_date'] != '') {
-                        $start_date = $_GET['start_date'];
-                        $end_date = $_GET['end_date'];
+                        // Fetch data from the database
+                        if (isset($_GET['start_date']) && isset($_GET['end_date']) && $_GET['start_date'] != '' && $_GET['end_date'] != '') {
+                            $start_date = $_GET['start_date'];
+                            $end_date = $_GET['end_date'];
 
-                        $sql = "SELECT i.invoice_no, i.date, c.first_name, c.last_name, d.district, i.item_count, i.amount 
-                                FROM invoice i, district d, customer c  
-                                WHERE i.customer = c.id  AND c.district = d.id AND i.date BETWEEN '$start_date' AND '$end_date'";
-                    } else {
-                        $sql = "SELECT i.invoice_no, i.date, c.first_name, c.last_name, d.district, i.item_count, i.amount 
-                                FROM invoice i, district d, customer c  
-                                WHERE i.customer = c.id  AND c.district = d.id";
-                    }
-
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        // Read data
-                        while ($row = $result->fetch_assoc()) {
-                            $invoice_no = $row["invoice_no"];
-                            $date = $row["date"];
-                            $first_name = $row["first_name"];
-                            $last_name = $row["last_name"];
-                            $district = $row["district"];
-                            $item_count = $row["item_count"];
-                            $amount = $row["amount"];
-
-                            echo "<tr> 
-                                    <td>$invoice_no</td>
-                                    <td>$date</td>
-                                    <td>$first_name $last_name</td>
-                                    <td>$district</td>
-                                    <td>$item_count</td>
-                                    <td>$amount</td>
-                                  </tr>";
+                            $sql = "SELECT i.invoice_no, i.date, c.first_name, c.last_name, d.district, i.item_count, i.amount 
+                                    FROM invoice i, district d, customer c  
+                                    WHERE i.customer = c.id  AND c.district = d.id AND i.date BETWEEN '$start_date' AND '$end_date'";
+                        } else {
+                            $sql = "SELECT i.invoice_no, i.date, c.first_name, c.last_name, d.district, i.item_count, i.amount 
+                                    FROM invoice i, district d, customer c  
+                                    WHERE i.customer = c.id  AND c.district = d.id";
                         }
-                    } else {
-                        echo "<tr><td colspan='6' class='text-center'>No data found</td></tr>";
-                    }
+
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            // Read data
+                            while ($row = $result->fetch_assoc()) {
+                                $invoice_no = $row["invoice_no"];
+                                $date = $row["date"];
+                                $first_name = $row["first_name"];
+                                $last_name = $row["last_name"];
+                                $district = $row["district"];
+                                $item_count = $row["item_count"];
+                                $amount = $row["amount"];
+
+                                //display data
+                                echo "<tr> 
+                                        <td>$invoice_no</td>
+                                        <td>$date</td>
+                                        <td>$first_name $last_name</td>
+                                        <td>$district</td>
+                                        <td>$item_count</td>
+                                        <td>$amount</td>
+                                    </tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='6' class='text-center'>No data found</td></tr>";
+                        }
                     ?>
                 </tbody>
             </table>
         </div>
-
     </div>
 
     <?php
-    // Close the connection
-    $conn->close();
+        // Close the connection
+        $conn->close();
     ?>
 </body>
-
 </html>

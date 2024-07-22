@@ -10,7 +10,7 @@
     $contact_no = $_POST["contact_no"];
     $district = $_POST["district"];
 
-    //inserting values
+    // inserting values
     $sql = "INSERT INTO customer (title, first_name, middle_name, last_name, contact_no, district)
             VALUES ('$title', '$first_name', '$middle_name', '$last_name', '$contact_no', '$district')";
     

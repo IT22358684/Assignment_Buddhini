@@ -17,10 +17,6 @@ include_once 'config.php';
 </head>
 
 <body>
-<?php
-    // Linking the configuration file
-    include_once 'header.php';
-?>
     <div>
         <div class="searchBar">
             <form action="" method="get">
@@ -40,79 +36,80 @@ include_once 'config.php';
 
             <?php
             // Fetch data from the database
-            if (isset($_GET['start_date']) && isset($_GET['end_date']) && $_GET['start_date'] != '' && $_GET['end_date'] != '') {
-                $start_date = $_GET['start_date'];
-                $end_date = $_GET['end_date'];
+                if (isset($_GET['start_date']) && isset($_GET['end_date']) && $_GET['start_date'] != '' && $_GET['end_date'] != '') {
+                    $start_date = $_GET['start_date'];
+                    $end_date = $_GET['end_date'];
 
-                $sql = "SELECT n.id, n.invoice_no, n.date, c.first_name, c.last_name, d.district, i.item_name, i.item_code, t.category, m.unit_price
-                        FROM invoice_master m, invoice n , customer c, item_category t, item i, district d
-                        WHERE m.invoice_no = n.invoice_no AND n.customer = c.id AND m.item_id = i.id AND t.id = i.item_category AND c.district = d.id
-                        AND n.date BETWEEN '$start_date' AND '$end_date'
-                        ORDER BY n.invoice_no";
-            } else {
-                $sql = "SELECT n.id, n.invoice_no, n.date, c.first_name, c.last_name, d.district, i.item_name, i.item_code, t.category, m.unit_price
-                        FROM invoice_master m, invoice n , customer c, item_category t, item i, district d
-                        WHERE m.invoice_no = n.invoice_no AND n.customer = c.id AND m.item_id = i.id AND t.id = i.item_category AND c.district = d.id
-                        ORDER BY n.invoice_no";
-            }
-
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                $current_invoice_no = "";
-                $first_entry = true;
-
-                echo "<table class='table'>
-                        <thead>
-                            <tr>
-                                <th>Invoice Number</th>
-                                <th>Date</th>
-                                <th>Customer</th>
-                                <th>Customer District</th>
-                                <th>Item Code</th>
-                                <th>Item Name</th>
-                                <th>Item Category</th>
-                                <th>Unit Price</th>
-                            </tr>
-                        </thead>
-                        <tbody class='table-group-divider'>";
-
-                // Read data
-                while ($row = $result->fetch_assoc()) {
-                    $id = $row["id"];
-                    $invoice_no = $row["invoice_no"];
-                    $date = $row["date"];
-                    $first_name = $row["first_name"];
-                    $last_name = $row["last_name"];
-                    $district = $row["district"];
-                    $item_name = $row["item_name"];
-                    $item_code = $row["item_code"];
-                    $category = $row["category"];
-                    $unit_price = $row["unit_price"];
-
-                    if ($invoice_no != $current_invoice_no) {
-                        $current_invoice_no = $invoice_no;
-                        $first_entry = true;
-                    }
-
-                    echo "<tr>
-                            <td>" . ($first_entry ? $invoice_no : '') . "</td>
-                            <td>" . ($first_entry ? $date : '') . "</td>
-                            <td>" . ($first_entry ? $first_name . ' ' . $last_name : '') . "</td>
-                            <td>" . ($first_entry ? $district : '') . "</td>
-                            <td>" . $item_code . "</td>
-                            <td>" . $item_name . "</td>
-                            <td>" . $category . "</td>
-                            <td>" . $unit_price . "</td>
-                          </tr>";
-
-                    $first_entry = false;
+                    $sql = "SELECT n.id, n.invoice_no, n.date, c.first_name, c.last_name, d.district, i.item_name, i.item_code, t.category, m.unit_price
+                            FROM invoice_master m, invoice n , customer c, item_category t, item i, district d
+                            WHERE m.invoice_no = n.invoice_no AND n.customer = c.id AND m.item_id = i.id AND t.id = i.item_category AND c.district = d.id
+                            AND n.date BETWEEN '$start_date' AND '$end_date'
+                            ORDER BY n.invoice_no";
+                } else {
+                    $sql = "SELECT n.id, n.invoice_no, n.date, c.first_name, c.last_name, d.district, i.item_name, i.item_code, t.category, m.unit_price
+                            FROM invoice_master m, invoice n , customer c, item_category t, item i, district d
+                            WHERE m.invoice_no = n.invoice_no AND n.customer = c.id AND m.item_id = i.id AND t.id = i.item_category AND c.district = d.id
+                            ORDER BY n.invoice_no";
                 }
 
-                echo "</tbody></table>";
-            } else {
-                echo "<script>alert('No data found');</script>";
-            }
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    $current_invoice_no = "";
+                    $first_entry = true;
+
+                    echo "<table class='table'>
+                            <thead>
+                                <tr>
+                                    <th>Invoice Number</th>
+                                    <th>Date</th>
+                                    <th>Customer</th>
+                                    <th>Customer District</th>
+                                    <th>Item Code</th>
+                                    <th>Item Name</th>
+                                    <th>Item Category</th>
+                                    <th>Unit Price</th>
+                                </tr>
+                            </thead>
+                            <tbody class='table-group-divider'>";
+
+                    // Read data
+                    while ($row = $result->fetch_assoc()) {
+                        $id = $row["id"];
+                        $invoice_no = $row["invoice_no"];
+                        $date = $row["date"];
+                        $first_name = $row["first_name"];
+                        $last_name = $row["last_name"];
+                        $district = $row["district"];
+                        $item_name = $row["item_name"];
+                        $item_code = $row["item_code"];
+                        $category = $row["category"];
+                        $unit_price = $row["unit_price"];
+
+                        if ($invoice_no != $current_invoice_no) {
+                            $current_invoice_no = $invoice_no;
+                            $first_entry = true;
+                        }
+
+                        //display data
+                        echo "<tr>
+                                <td>" . ($first_entry ? $invoice_no : '') . "</td>
+                                <td>" . ($first_entry ? $date : '') . "</td>
+                                <td>" . ($first_entry ? $first_name . ' ' . $last_name : '') . "</td>
+                                <td>" . ($first_entry ? $district : '') . "</td>
+                                <td>" . $item_code . "</td>
+                                <td>" . $item_name . "</td>
+                                <td>" . $category . "</td>
+                                <td>" . $unit_price . "</td>
+                            </tr>";
+
+                        $first_entry = false;
+                    }
+
+                    echo "</tbody></table>";
+                } else {
+                    echo "<script>alert('No data found');</script>";
+                }
             ?>
         </div>
     </div>

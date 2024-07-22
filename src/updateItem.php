@@ -3,7 +3,7 @@
 include_once 'config.php';
 
 // Get the item id from the URL
-$id = intval($_GET['updateid']); // Sanitize input
+$id = intval($_GET['updateid']); 
 
 // Fetching the data from the database
 $sql = "SELECT i.*, c.id AS category_id, c.category, s.id AS subcategory_id, s.sub_category
@@ -47,9 +47,7 @@ if (isset($_POST['submit'])) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('siisidi', $item_code, $item_category, $item_subcategory, $item_name, $quantity, $unit_price, $id);
 
-    // Check updated data
     if ($stmt->execute()) {
-        // Redirect to items page
         header("Location: items.php");
         exit();
     } else {
@@ -70,10 +68,8 @@ if (isset($_POST['submit'])) {
     <script src="https://kit.fontawesome.com/989548542d.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<?php
-// Linking the configuration file
-include_once 'header.php';
-?>
+
+    <!-- update form -->
     <div class="position-absolute top-50 start-50 translate-middle" id= "formFull">
         <form method="POST" class="row g-3">
             <h2 class="topic"> Update Item Details </h2>
